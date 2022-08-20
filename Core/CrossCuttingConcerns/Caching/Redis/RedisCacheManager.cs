@@ -1,4 +1,6 @@
-﻿using ServiceStack.Redis;
+﻿using Core.Utilities.Redis;
+using Microsoft.Extensions.Configuration;
+using ServiceStack.Redis;
 using ServiceStack.Text;
 
 namespace Core.CrossCuttingConcerns.Caching.Redis;
@@ -9,10 +11,14 @@ namespace Core.CrossCuttingConcerns.Caching.Redis;
 public class RedisCacheManager : ICacheManager
 {
     private readonly RedisEndpoint _redisEndpoint;
-
-    public RedisCacheManager()
+    private readonly IConfiguration _configuration;
+    private readonly RedisOptions _redisOptions;
+    public RedisCacheManager(IConfiguration configuration)
     {
-        _redisEndpoint = new RedisEndpoint("localhost", 59461);
+        _configuration = configuration;
+        _redisOptions = _configuration.GetSection("RedisOptions").Get<RedisOptions>();
+        _redisEndpoint = new RedisEndpoint(_redisOptions.Host, _redisOptions.Port);
+        
     }
 
     public T Get<T>(string key)

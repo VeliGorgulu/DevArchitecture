@@ -47,7 +47,4 @@
 		<ProjectReference Include="..\Business\Business.csproj" />
 		<ProjectReference Include="..\Entities\Entities.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="logs\" />
-	</ItemGroup>
 </Project>

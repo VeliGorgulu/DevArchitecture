@@ -13,6 +13,8 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using DataAccess.Concrete.MongoDb.Context;
+using DataAccess.Concrete.MongoDb;
+using DataAccess.Concrete.MongoDb.Collections;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

@@ -16,7 +16,7 @@ export class UserService {
     return this._httpClient.get<User[]>(environment.getApiUrl + "/users/");
   }
 
-  getUserById(id: number): Observable<User> {   
+  getUserById(id: number): Observable<User> {
     return this._httpClient.get<User>(environment.getApiUrl + `/users/${id}`);
   }
 
@@ -59,15 +59,19 @@ export class UserService {
 
   saveUserClaims(userId: number, claims: number[]): Observable<any> {
     var result = this._httpClient.put(
-      environment.getApiUrl + `/user-claims/${userId}`,
-      { ClaimIds: claims },
+      environment.getApiUrl + `/user-claims/`,
+      { UserId: userId, ClaimIds: claims },
       { responseType: "text" }
     );
     return result;
   }
 
   saveUserGroupPermissions(userId: number, groups: number[]): Observable<any> {
-    var result = this._httpClient.put(environment.getApiUrl + "/user-groups/", {UserId:userId, GroupId:groups }, { responseType: 'text' });
+    var result = this._httpClient.put(
+      environment.getApiUrl + "/user-groups/",
+      { UserId: userId, GroupId: groups },
+      { responseType: "text" }
+    );
     return result;
   }
 

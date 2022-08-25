@@ -11,7 +11,7 @@ namespace Business.Handlers.GroupClaims.Commands;
 
 public class UpdateGroupClaimCommand : IRequest<IResult>
 {
-    public int Id { get; set; }
+
     public int GroupId { get; set; }
     public int[] ClaimIds { get; set; }
 
@@ -29,9 +29,9 @@ public class UpdateGroupClaimCommand : IRequest<IResult>
         [LogAspect]
         public async Task<IResult> Handle(UpdateGroupClaimCommand request, CancellationToken cancellationToken)
         {
-            var list = request.ClaimIds.Select(x => new GroupClaim() { ClaimId = x, GroupId = request.Id });
+            var list = request.ClaimIds.Select(x => new GroupClaim() { ClaimId = x, GroupId = request.GroupId });
 
-            await _groupClaimRepository.BulkInsert(request.Id, list);
+            await _groupClaimRepository.BulkInsert(request.GroupId, list);
             await _groupClaimRepository.SaveChangesAsync();
 
             return new SuccessResult(Messages.Updated);

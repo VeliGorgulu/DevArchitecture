@@ -58,8 +58,8 @@ export class GroupService {
 
   saveGroupClaims(groupId: number, claims: number[]): Observable<any> {
     var result = this._httpClient.put(
-      environment.getApiUrl + `/group-claims/${groupId}`,
-      { ClaimIds: claims },
+      environment.getApiUrl + `/group-claims/`,
+      { GroupId: groupId, ClaimIds: claims },
       { responseType: "text" }
     );
     return result;
@@ -67,8 +67,8 @@ export class GroupService {
 
   saveGroupUsers(groupId: number, userIds: number[]): Observable<any> {
     var result = this._httpClient.put(
-      environment.getApiUrl + `/user-groups/groups/${groupId}`,
-      {GroupId:groupId, UserIds:userIds },
+      environment.getApiUrl + `/user-groups/groups/`,
+      { GroupId: groupId, UserIds: userIds },
       { responseType: "text" }
     );
     return result;

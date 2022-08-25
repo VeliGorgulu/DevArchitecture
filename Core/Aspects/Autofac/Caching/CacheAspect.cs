@@ -33,6 +33,7 @@ public class CacheAspect : MethodInterception
         var tenantId = _httpContextAccessor.HttpContext?.User.Claims
              .FirstOrDefault(x => x.Type.EndsWith("tenantId"))?.Value;
         var methodName = string.Format($"{invocation.Arguments[0]}.{invocation.Method.Name}");
+        
         var arguments = invocation.Arguments;
         var key = $"{tenantId}{methodName}({BuildKey(arguments)})";
         var returnType = invocation.Method.ReturnType.GenericTypeArguments.FirstOrDefault();

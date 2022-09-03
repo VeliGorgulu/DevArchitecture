@@ -22,7 +22,7 @@ public class CreateGroupInternalCommand : IRequest<IResult>
         }
 
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(CreateGroupInternalCommand request, CancellationToken cancellationToken)
         {
             var isThereAnyGroupRecord = _groupRepository.Query().Any(x => x.GroupName == request.GroupName);

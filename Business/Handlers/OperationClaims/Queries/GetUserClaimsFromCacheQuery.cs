@@ -27,7 +27,7 @@ public class GetUserClaimsFromCacheQuery : IRequest<IDataResult<IEnumerable<stri
 
         [SecuredOperation]
         [PerformanceAspect]
-        [CacheAspect]
+        //[CacheAspect]
         [LogAspect]
         public async Task<IDataResult<IEnumerable<string>>> Handle(GetUserClaimsFromCacheQuery request, CancellationToken cancellationToken)
         {

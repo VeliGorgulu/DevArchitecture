@@ -11,7 +11,7 @@ using MediatR;
 namespace Business.Handlers.UserClaims.Commands;
 
 public class UpdateUserClaimCommand : IRequest<IResult>
-{
+{   
     public int UserId { get; set; }
     public int[] ClaimIds { get; set; }
 

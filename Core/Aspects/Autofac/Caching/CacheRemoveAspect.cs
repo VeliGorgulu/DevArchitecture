@@ -39,10 +39,12 @@ public class CacheRemoveAspect : MethodInterception
             targetTypeName = targetTypeName.Replace(delete, string.Empty);
             targetTypeName = targetTypeName.Replace(internalCommand, string.Empty);
             targetTypeName = targetTypeName.Replace(register, string.Empty);
-            if (targetTypeName.Last() == 'y')
-                targetTypeName = targetTypeName.Remove(targetTypeName.LastIndexOf('y'));
-
             _pattern = get + targetTypeName;
+            var lastChar = _pattern.Substring(_pattern.Length - 1);
+            if (lastChar == "y")
+            {
+                _pattern = _pattern.Replace(_pattern.Substring(_pattern.Length - 1), "ies");
+            }
 
         }
         _cacheManager.RemoveByPattern(_pattern);

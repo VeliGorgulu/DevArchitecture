@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from "./models/user";
 import { UserService } from './services/user.service';
+import { Company } from '../company/models/Company';
+import { CompanyService } from '../company/services/Company.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { LookUp } from 'app/core/models/lookUp';
 import { AlertifyService } from 'app/core/services/alertify.service';
@@ -29,9 +31,11 @@ export class UserComponent implements AfterViewInit, OnInit {
 	displayedColumns: string[] = ["userId","email","fullName","status","mobilePhones","address","notes","passwordChange","updateClaim","updateGroupClaim","update","delete"];
 
   user: User;
+  companyList: Company[];
   userList: User[];
   groupDropdownList: LookUp[];
   groupSelectedItems: LookUp[];
+  companyLookup: LookUp[];
   dropdownSettings: IDropdownSettings;
 
   claimDropdownList: LookUp[];
@@ -41,9 +45,10 @@ export class UserComponent implements AfterViewInit, OnInit {
   isClaimChange: boolean = false;
 
   userId: number;
-
+companyId: number;
   constructor(
     private userService: UserService,
+    private companyService: CompanyService,
     private formBuilder: FormBuilder,
     private alertifyService: AlertifyService,
     private lookUpService: LookUpService,
@@ -66,7 +71,9 @@ export class UserComponent implements AfterViewInit, OnInit {
 
     this.dropdownSettings = environment.getDropDownSetting;
 
-
+    this.companyService.getCompanyList().subscribe(data => {
+			this.companyList = data;
+		})
     this.lookUpService.getGroupLookUp().subscribe(data => {
       this.groupDropdownList = data;
     })
@@ -156,6 +163,7 @@ export class UserComponent implements AfterViewInit, OnInit {
   createUserAddForm() {
     this.userAddForm = this.formBuilder.group({
       userId: [0],
+      companyId: "",
       fullName: ["", Validators.required],
       email: ["", Validators.required],
       address: [""],

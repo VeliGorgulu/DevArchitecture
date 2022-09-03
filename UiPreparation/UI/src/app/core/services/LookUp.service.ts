@@ -30,7 +30,7 @@ export class LookUpService {
     return this.httpClient.get<LookUp[]>(environment.getApiUrl + "/languages/lookups")
   }
   getCompanyLookup():Observable<LookUp[]>{
-    return this.httpClient.get<LookUp[]>(environment.getApiUrl + "/companies/lookups")
+    return this.httpClient.get<LookUp[]>(environment.getApiUrl + "/companies")
   }
 
 }

@@ -27,7 +27,7 @@ public class CreateUserClaimsInternalCommand : IRequest<IResult>
         }
 
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(CreateUserClaimsInternalCommand request, CancellationToken cancellationToken)
         {
             foreach (var claimId in request.OperationClaims.Select(claim => claim.Id))

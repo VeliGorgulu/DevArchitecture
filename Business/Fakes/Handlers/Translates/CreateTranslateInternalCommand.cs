@@ -35,7 +35,7 @@ public class CreateTranslateInternalCommand : IRequest<IResult>
 
         [ValidationAspect(typeof(CreateTranslateValidator))]
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(CreateTranslateInternalCommand request, CancellationToken cancellationToken)
         {
             var handler = new CreateTranslateCommandHandler(_translateRepository);

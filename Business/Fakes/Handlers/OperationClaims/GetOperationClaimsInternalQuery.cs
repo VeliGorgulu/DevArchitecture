@@ -23,7 +23,7 @@ public class GetOperationClaimsInternalQuery : IRequest<IDataResult<IEnumerable<
             _mapper = mapper;
         }
 
-        [LogAspect]
+        //[LogAspect]
         public async Task<IDataResult<IEnumerable<OperationClaim>>> Handle(GetOperationClaimsInternalQuery request, CancellationToken cancellationToken)
         {
             var handler = new GetOperationClaimsQueryHandler(_operationClaimRepository);

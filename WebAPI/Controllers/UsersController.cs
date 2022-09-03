@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateUserDto updateUserDto)
         {
-            return GetResponseOnlyResultMessage(await Mediator.Send(new UpdateUserCommand { UserId = id, Email = updateUserDto.Email, FullName = updateUserDto.FullName, MobilePhones = updateUserDto.MobilePhones, Address = updateUserDto.Address, Notes = updateUserDto.Notes }));
+            return GetResponseOnlyResultMessage(await Mediator.Send(new UpdateUserCommand { UserId = id,CompanyId=updateUserDto.CompanyId, Email = updateUserDto.Email, FullName = updateUserDto.FullName, MobilePhones = updateUserDto.MobilePhones, Address = updateUserDto.Address, Notes = updateUserDto.Notes }));
         }
 
         /// <summary>

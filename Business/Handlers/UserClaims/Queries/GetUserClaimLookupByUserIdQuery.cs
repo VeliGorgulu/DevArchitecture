@@ -1,4 +1,5 @@
 ﻿using Business.BusinessAspects;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Logging;
 using Core.Entities.Dtos;
 using Core.Utilities.Results;
@@ -22,6 +23,7 @@ public class GetUserClaimLookupByUserIdQuery : IRequest<IDataResult<IEnumerable<
         }
 
         [SecuredOperation]
+        [CacheAspect]
         [LogAspect]
         public async Task<IDataResult<IEnumerable<SelectionItem>>> Handle(GetUserClaimLookupByUserIdQuery request, CancellationToken cancellationToken)
         {

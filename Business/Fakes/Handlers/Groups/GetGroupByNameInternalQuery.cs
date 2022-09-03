@@ -23,7 +23,7 @@ public class GetGroupByNameInternalQuery : IRequest<IDataResult<Group>>
             _mapper = mapper;
         }
 
-        [LogAspect]
+        //[LogAspect]
         public async Task<IDataResult<Group>> Handle(GetGroupByNameInternalQuery request, CancellationToken cancellationToken)
         {
             var handler = new GetGroupByNameQueryHandler(_groupRepository);

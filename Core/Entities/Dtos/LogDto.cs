@@ -4,9 +4,12 @@ public class LogDto : IEntity
 {
     public int Id { get; set; }
     public string TenantId { get; set; }
+    public string IpAddress { get; set; }
+    public string UserAgent { get; set; }
     public string Level { get; set; }
     public string ExceptionMessage { get; set; }
     public DateTime? TimeStamp { get; set; }
+    public string ProcessTime { get; set; }
     public string User { get; set; }
     public string Value { get; set; }
     public string Type { get; set; }

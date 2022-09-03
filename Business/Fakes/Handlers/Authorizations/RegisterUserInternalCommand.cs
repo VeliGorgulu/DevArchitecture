@@ -34,7 +34,7 @@ public class RegisterUserInternalCommand : IRequest<IResult>
 
         [ValidationAspect(typeof(RegisterUserValidator))]
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(RegisterUserInternalCommand request, CancellationToken cancellationToken)
         {
             var handler = new RegisterUserCommandHandler(_userRepository, _mediator);

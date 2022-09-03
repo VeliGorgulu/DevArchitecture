@@ -8,6 +8,8 @@ using Core.Utilities.Messages;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.Net.Http;
 
 namespace Core.Aspects.Autofac.Exception;
 
@@ -67,6 +69,12 @@ public class ExceptionLogAspect : MethodInterception
                     tenantId == null)
                 ? "?"
                 : tenantId,
+            IpAddress = (_httpContextAccessor.HttpContext == null || _httpContextAccessor.HttpContext.Connection.RemoteIpAddress == null)
+                ? "UnknownIp"
+                : _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
+            UserAgent = (_httpContextAccessor.HttpContext == null || _httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString() == null)
+            ? "Unknown"
+                : _httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString(),
         };
         return logDetailWithException;
     }

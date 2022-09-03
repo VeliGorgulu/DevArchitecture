@@ -11,11 +11,14 @@ namespace Business.Handlers.Users.Commands;
 public class UpdateUserCommand : IRequest<IResult>
 {
     public int UserId { get; set; }
+    public int CompanyId { get; set; }
+    public int? OrganizationId { get; set; }
     public string Email { get; set; }
     public string FullName { get; set; }
     public string MobilePhones { get; set; }
     public string Address { get; set; }
     public string Notes { get; set; }
+    public bool Status { get; set; }
 
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, IResult>
     {
@@ -38,7 +41,10 @@ public class UpdateUserCommand : IRequest<IResult>
             isThereAnyUser.MobilePhones = request.MobilePhones;
             isThereAnyUser.Address = request.Address;
             isThereAnyUser.Notes = request.Notes;
-
+            isThereAnyUser.CompanyId = request.CompanyId;
+            isThereAnyUser.TenantId = request.CompanyId;
+            isThereAnyUser.OrganizationId = request.OrganizationId;
+            isThereAnyUser.Status = true;
             _userRepository.Update(isThereAnyUser);
             await _userRepository.SaveChangesAsync();
             return new SuccessResult(Messages.Updated);

@@ -40,7 +40,7 @@ namespace Business.Fakes.Handlers.Companies
 
             [ValidationAspect(typeof(CreateCompanyValidator))]
             [CacheRemoveAspect]
-            [LogAspect]
+            //[LogAspect]
             public async Task<IResult> Handle(CreateCompanyInternalCommand request, CancellationToken cancellationToken)
             {
                 var handler = new CreateCompanyCommandHandler(_companyRepository);

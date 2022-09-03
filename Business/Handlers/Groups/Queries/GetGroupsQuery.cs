@@ -11,7 +11,7 @@ namespace Business.Handlers.Groups.Queries;
 
 public class GetGroupsQuery : IRequest<IDataResult<IEnumerable<Group>>>
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
 
     public class GetGroupsQueryHandler : IRequestHandler<GetGroupsQuery, IDataResult<IEnumerable<Group>>>
     {

@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateUserClaimDto updateUserClaimDto)
+        public async Task<IActionResult> Update( [FromBody] UpdateUserClaimDto updateUserClaimDto)
         {
             return GetResponseOnlyResultMessage(await Mediator.Send(new UpdateUserClaimCommand { UserId = updateUserClaimDto.UserId, ClaimIds = updateUserClaimDto.ClaimIds }));
         }

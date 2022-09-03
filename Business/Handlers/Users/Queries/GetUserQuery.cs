@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.BusinessAspects;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Logging;
 using Core.Entities.Dtos;
 using Core.Utilities.Results;
@@ -24,6 +25,7 @@ public class GetUserQuery : IRequest<IDataResult<UserDto>>
         }
 
         [SecuredOperation]
+        [CacheAspect]
         [LogAspect]
         public async Task<IDataResult<UserDto>> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {

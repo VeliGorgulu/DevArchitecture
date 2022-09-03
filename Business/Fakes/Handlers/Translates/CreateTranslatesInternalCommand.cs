@@ -29,7 +29,7 @@ public class CreateTranslatesInternalCommand : IRequest<IResult>
 
         [ValidationAspect(typeof(CreateTranslateValidator))]
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(CreateTranslatesInternalCommand request, CancellationToken cancellationToken)
         {
             _translateRepository.AddRange(request.Translates);

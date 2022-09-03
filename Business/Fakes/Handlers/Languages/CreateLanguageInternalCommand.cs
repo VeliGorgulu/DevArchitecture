@@ -34,7 +34,7 @@ public class CreateLanguageInternalCommand : IRequest<IResult>
 
         [ValidationAspect(typeof(CreateLanguageValidator))]
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(CreateLanguageInternalCommand request, CancellationToken cancellationToken)
         {
             var handler = new CreateLanguageCommandHandler(_languageRepository);

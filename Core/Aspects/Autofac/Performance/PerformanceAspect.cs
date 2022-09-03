@@ -1,4 +1,5 @@
 ﻿using Castle.DynamicProxy;
+using Core.CrossCuttingConcerns.Logging;
 using Core.Settings;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
@@ -36,6 +37,10 @@ public class PerformanceAspect : MethodInterception
         {
             Debug.WriteLine(
                 $"Performance: {invocation.Method.DeclaringType.FullName}.{invocation.Method.Name}-->{_stopwatch.Elapsed.TotalSeconds}");
+            var logdetail = new LogDetail
+            {
+                ProcessTime = _stopwatch.Elapsed.TotalSeconds.ToString(),
+            };
         }
 
         _stopwatch.Reset();

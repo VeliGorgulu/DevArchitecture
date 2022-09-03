@@ -26,6 +26,7 @@ public class GetLogDtoQuery : IRequest<IDataResult<IEnumerable<LogDto>>>
 
         [SecuredOperation]
         [PerformanceAspect]
+        //[CacheAspect]
         [LogAspect]
         public async Task<IDataResult<IEnumerable<LogDto>>> Handle(GetLogDtoQuery request, CancellationToken cancellationToken)
         {
@@ -47,8 +48,11 @@ public class GetLogDtoQuery : IRequest<IDataResult<IEnumerable<LogDto>>>
                         Id = item.Id,
                         Level = item.Level,
                         TimeStamp = item.TimeStamp,
+                        ProcessTime=jsonMessage.ProcessTime,
                         Type = msg.Parameters[0].Type,
                         User = jsonMessage.User,
+                        IpAddress = jsonMessage.IpAddress,
+                        UserAgent=jsonMessage.UserAgent,
                         Value = valueList,
                         ExceptionMessage = exceptionMessage,
                         TenantId = jsonMessage.TenantId,
@@ -74,8 +78,11 @@ public class GetLogDtoQuery : IRequest<IDataResult<IEnumerable<LogDto>>>
                     Id = item.Id,
                     Level = item.Level,
                     TimeStamp = item.TimeStamp,
+                    ProcessTime=jsonMessage.ProcessTime,
                     Type = msg.Parameters[0].Type,
                     User = jsonMessage.User,
+                    IpAddress= jsonMessage.IpAddress,
+                    UserAgent = jsonMessage.UserAgent,
                     Value = valueList,
                     ExceptionMessage = exceptionMessage,
                     TenantId = jsonMessage.TenantId,

@@ -26,7 +26,7 @@ public class CreateOperationClaimInternalCommand : IRequest<IResult>
         }
 
         [CacheRemoveAspect]
-        [LogAspect]
+        //[LogAspect]
         public async Task<IResult> Handle(CreateOperationClaimInternalCommand request, CancellationToken cancellationToken)
         {
             var handler = new CreateOperationClaimCommandHandler(_operationClaimRepository);

@@ -11,7 +11,7 @@ namespace Business.Handlers.GroupClaims.Commands;
 
 public class UpdateGroupClaimCommand : IRequest<IResult>
 {
-
+   
     public int GroupId { get; set; }
     public int[] ClaimIds { get; set; }
 

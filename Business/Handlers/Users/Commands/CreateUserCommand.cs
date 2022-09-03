@@ -13,6 +13,8 @@ namespace Business.Handlers.Users.Commands;
 public class CreateUserCommand : IRequest<IResult>
 {
     public int UserId { get; set; }
+    public int CompanyId { get; set; }
+    public int? OrganizationId { get; set; }
     public long CitizenId { get; set; }
     public string FullName { get; set; }
     public string Email { get; set; }
@@ -61,8 +63,9 @@ public class CreateUserCommand : IRequest<IResult>
                 Gender = request.Gender,
                 Notes = request.Notes,
                 MobilePhones = request.MobilePhones,
-                TenantId = tenant.Data.TenantId,
-                CompanyId = tenant.Data.TenantId
+                TenantId = request.CompanyId,
+                CompanyId = request.CompanyId,
+                OrganizationId = request.OrganizationId
             };
 
             _userRepository.Add(user);

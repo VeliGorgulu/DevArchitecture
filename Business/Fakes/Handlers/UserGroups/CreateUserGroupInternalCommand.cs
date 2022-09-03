@@ -25,7 +25,7 @@ public class CreateUserGroupInternalCommand : IRequest<IResult>
         }
 
         [CacheRemoveAspect]
-        [LogAspect]
+       // [LogAspect]
         public async Task<IResult> Handle(CreateUserGroupInternalCommand request, CancellationToken cancellationToken)
         {
             var handler = new CreateUserGroupCommandHandler(_userGroupRepository);

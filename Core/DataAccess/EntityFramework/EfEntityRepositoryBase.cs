@@ -70,8 +70,7 @@ public class EfEntityRepositoryBase<TEntity, TContext>
             ? await Context.Set<TEntity>().ToListAsync()
             : await Context.Set<TEntity>().Where(expression).ToListAsync();
     }
-
-    //sources: https://www.nuget.org/packages/Apsiyon  |||  https://github.com/vmutlu/ApsiyonFramework
+    
     public PagingResult<TEntity> GetListForPaging(int page, string propertyName, bool asc, Expression<Func<TEntity, bool>> expression = null, params Expression<Func<TEntity, object>>[] includeEntities)
     {
         var list = Context.Set<TEntity>().AsQueryable();

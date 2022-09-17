@@ -31,7 +31,7 @@ export class LanguageService {
     return this._httpClient.put(environment.getApiUrl +`/languages/${language.id}`, language);
   }
 
-  deleteLanguage(id: number) {
-    return this._httpClient.delete(`/languages/${id}`);
+  deleteLanguage(id: number){
+    return this._httpClient.request('delete', environment.getApiUrl +`/languages/${id}`);
   }
 }
